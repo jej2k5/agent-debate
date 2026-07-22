@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTALLED="$HOME/.local/share/claude-codex-debate/venv/bin/debate-bridge"
+
+if [[ -x "$INSTALLED" ]]; then
+  exec "$INSTALLED" "$@"
+fi
+
+if [[ -x "$ROOT/.venv/bin/python" ]]; then
+  exec "$ROOT/.venv/bin/python" -m claude_codex_debate.bridge "$@"
+fi
+
+cat >&2 <<MSG
+The debate bridge is not installed yet.
+Run:
+  cd "$ROOT"
+  ./scripts/install.sh
+
+Then retry:
+  ./debate-bridge $*
+MSG
+exit 1

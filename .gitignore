@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Frontend dependencies (build output in src/claude_codex_debate/webui/ is committed)
+web/node_modules/
+
+# Local runtime state: databases, logs, terminal identifiers, pidfiles
+*.db
+*.db-wal
+*.db-shm
+*.log
+bridge.pid
+
+# Editor / OS
+.DS_Store
+
+# Machine-specific config and local tooling caches
+.claude/settings.local.json
+.impeccable/
