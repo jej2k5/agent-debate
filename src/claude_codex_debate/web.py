@@ -125,7 +125,7 @@ def _raise_for(error: ValueError) -> None:
 
 def create_app(database: str | Path | None = None) -> FastAPI:
     store = DebateStore(database or db_path())
-    app = FastAPI(title="debate-control-room")
+    app = FastAPI(title="agent-debate")
 
     def agents() -> dict[str, Any]:
         return {name: agent_status(store, name) for name in ("claude", "codex")}

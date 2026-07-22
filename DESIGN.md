@@ -1,5 +1,5 @@
 ---
-name: Debate Control Room
+name: Agent Debate
 description: Mission control for live Claude ↔ Codex debates — calm instrumentation around a reading surface.
 colors:
   sea-glass-teal: "oklch(0.5 0.09 172)"
@@ -91,7 +91,7 @@ components:
     padding: "0.5rem 0.75rem"
 ---
 
-# Design System: Debate Control Room
+# Design System: Agent Debate
 
 ## 1. Overview
 
@@ -192,7 +192,7 @@ Quiet instrumentation: controls read as calibrated instruments — precise, unhu
 - **Error:** Inline `form-error` text in danger red below the control, `role="alert"`.
 
 ### Navigation
-- **Style:** A single 56px sticky topbar — wordmark (two overlapping identity dots + "Control Room"), current debate id in muted text, bridge-health chip, theme toggle. Hairline bottom border over backdrop blur. No sidebar, ever.
+- **Style:** A single 56px sticky topbar — wordmark (two overlapping identity dots + "Agent Debate"), current debate id in muted text, bridge-health chip, theme toggle. Hairline bottom border over backdrop blur. No sidebar, ever.
 
 ### The Transcript (signature)
 - Messages are typographic blocks, not chat bubbles: speaker name in identity color (620 weight), mono timestamp, then Reading-size text at ≤70ch. Moderator interjections are the exception — bordered `surface` boxes that interrupt the flow the way the moderator interrupts the debate. New arrivals fade-and-settle 8px (320ms ease-out-quint, crossfade under reduced motion); a pulsing identity dot marks who holds the floor; auto-follow only when the reader is already at the bottom, else the floating "↓ New message" pill.

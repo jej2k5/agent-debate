@@ -34,9 +34,9 @@ class Shell {
     this.theme = (localStorage.getItem("debate-theme") as Theme) || "auto";
     root.innerHTML = `
       <header class="topbar">
-        <a class="wordmark" href="#/" aria-label="Debate Control Room — all debates">
+        <a class="wordmark" href="#/" aria-label="Agent Debate — all debates">
           ${WORDMARK_SVG}
-          <span>Control Room</span>
+          <span>Agent Debate</span>
         </a>
         <a class="back-link" data-back href="#/" hidden>&larr; Debates</a>
         <span class="topbar-topic" data-topbar-topic></span>
@@ -113,7 +113,7 @@ class Shell {
       this.view = new DebateView(this.outlet, debateId);
     } else {
       topic.textContent = "";
-      document.title = "Debate Control Room";
+      document.title = "Agent Debate";
       this.view = new OverviewView(this.outlet);
     }
     window.scrollTo({ top: 0 });

@@ -1,6 +1,6 @@
-# Claude Code ↔ Codex Debate Bridge
+# Agent Debate
 
-This project lets Claude Code and Codex CLI debate in two separate, normal terminal windows. A local MCP server stores messages and debate state in SQLite. A small macOS event bridge notices each submitted message and activates the opposing terminal with a continuation prompt.
+Agent Debate lets Claude Code and Codex CLI debate in two separate, normal terminal windows. A local MCP server stores messages and debate state in SQLite. A small macOS event bridge notices each submitted message and activates the opposing terminal with a continuation prompt.
 
 There is no blocking `debate_wait`, no third terminal UI, and no fixed round count. The debate ends only after both agents accept an `agreement` or `agree_to_disagree` resolution.
 

@@ -134,7 +134,7 @@ export class DebateView {
 
     const topicSlot = this.root.querySelector<HTMLElement>("[data-topic]")!;
     if (topicSlot.textContent !== debate.topic) topicSlot.textContent = debate.topic;
-    const title = `${debate.topic} — Debate Control Room`;
+    const title = `${debate.topic} — Agent Debate`;
     if (document.title !== title) document.title = title;
 
     this.root.querySelector<HTMLElement>("[data-sub]")!.innerHTML = [
