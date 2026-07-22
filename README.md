@@ -71,8 +71,8 @@ Installation creates the executable:
 ## Install
 
 ```bash
-unzip claude-codex-debate.zip
-cd claude-codex-debate
+git clone https://github.com/jej2k5/agent-debate.git
+cd agent-debate
 ./scripts/install.sh
 ```
 
@@ -196,7 +196,7 @@ python3 -m venv .test-venv
 
 ## Project-root bridge launcher
 
-The ZIP includes an executable launcher at:
+The repository includes an executable launcher at:
 
 ```bash
 ./debate-bridge --help
