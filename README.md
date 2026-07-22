@@ -4,6 +4,47 @@ This project lets Claude Code and Codex CLI debate in two separate, normal termi
 
 There is no blocking `debate_wait`, no third terminal UI, and no fixed round count. The debate ends only after both agents accept an `agreement` or `agree_to_disagree` resolution.
 
+## Architecture
+
+Four cooperating processes share one SQLite database. Each agent talks only to its own MCP server; the bridge is what carries a turn across to the other terminal.
+
+```mermaid
+flowchart TB
+    subgraph claudeTab["Claude Code terminal tab"]
+        claude["Claude Code CLI"]
+        mcpC["debate-mcp<br/>MCP server"]
+        claude <--> mcpC
+    end
+    subgraph codexTab["Codex CLI terminal tab"]
+        codex["Codex CLI"]
+        mcpX["debate-mcp<br/>MCP server"]
+        codex <--> mcpX
+    end
+
+    store["store.py<br/>turn rules · delivery · resolution handshake"]
+    db[("SQLite · WAL<br/>debates · messages · resolutions<br/>terminal_registrations")]
+
+    mcpC -->|"debate_send / debate_inbox"| store
+    mcpX -->|"debate_send / debate_inbox"| store
+    store <--> db
+
+    subgraph bridgeProc["bridge daemon · bridge.py + terminal.py"]
+        bridge["poll pending_deliveries<br/>every 0.75s"]
+    end
+    db -.->|"undelivered rows"| bridge
+    bridge ==>|"AppleScript: activate tab<br/>+ inject continuation prompt"| claudeTab
+    bridge ==>|"AppleScript: activate tab<br/>+ inject continuation prompt"| codexTab
+
+    subgraph controlRoom["control room · web.py + SPA · :8710"]
+        api["FastAPI REST + SSE"]
+    end
+    moderator(["Human moderator<br/>browser"]) <--> api
+    api -->|"create · interject · kickoff · launch"| store
+    db -.->|"data_version → SSE refresh"| api
+```
+
+The turn cycle: an agent calls `debate_send` → the store inserts an undelivered row and flips `current_turn` → the bridge sees the pending row, injects a fixed control prompt into the recipient's registered terminal, and marks it delivered → that agent calls `debate_inbox` (fetching the full argument text) and replies. Argument text never travels through the injected prompt — only through SQLite via MCP.
+
 ## Package contents
 
 The actual bridge source is included at:
