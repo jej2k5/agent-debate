@@ -230,3 +230,7 @@ Then verify:
 ```bash
 ~/.local/share/claude-codex-debate/venv/bin/debate-bridge --help
 ```
+
+## License
+
+Agent Debate is licensed under the [Apache License 2.0](LICENSE).

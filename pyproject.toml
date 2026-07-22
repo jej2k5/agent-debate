@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,6 +7,8 @@ name = "claude-codex-debate"
 version = "0.2.0"
 description = "A local MCP debate relay and macOS event bridge for Claude Code and Codex CLI"
 requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 dependencies = ["mcp>=1.2.0"]
 
 [project.optional-dependencies]
